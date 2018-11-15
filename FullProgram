@@ -28,7 +28,7 @@ int main()
 	return 0;
 }
 
-// Will display the an
+// Will display the total
 void display(char letter[], int letterSum)
 {
 
