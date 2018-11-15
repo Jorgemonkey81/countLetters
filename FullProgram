@@ -2,25 +2,27 @@
 #include <string>
 #include <iomanip>
 #include <cctype>
+#include <limits>
 
 using namespace std;
-void getText(char text[], int max);
+int getText(char text[], int max);
 void display(char text, int letterSum);
 int getLetterCount(char text[], int max, char letter);
 
 int main()
 {
 	char letter;
-	char text[(256 * 8/8)];
+	char text[256] = {};
 	int letterSum;
+	int textLength = 0;
 
 	cout << "Enter a letter: ";
 	cin >> letter;
-	cin.ignore();
+	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-	getText(text, sizeof(text) / sizeof(text[(256*8/8)]));
+	textLength = getText(text, sizeof(text) / sizeof(text[0]));
 
-	letterSum = getLetterCount(text, sizeof(text) / sizeof(text[(256 * 8 / 8)]), letter);
+	letterSum = getLetterCount(text, textLength, letter);
 
 	display(letter, letterSum);
 
@@ -36,24 +38,23 @@ void display(char letter, int letterSum)
 
 }
 
-void getText(char text[], int max)
+int getText(char text[], int max)
 {
 	cout << "Enter Text: ";
-	cin >> text;
 	cin.getline(text, max);
+	return cin.gcount();
 }
 
-int getLetterCount(char text[], int max, char letter)
+int getLetterCount(char text[], int textLength, char letter)
 {
 	// Count letters
 	int letterSum = 0;
-	for (int i = 0; i < sizeof(text); i++)
+	for (int i = 0; i < textLength; i++)
 	{
 		if (text[i] == letter)
 		{
 			letterSum++;
 		}
 	}
-	cout << letterSum << " (From getLetterCount)" << endl;
 	return letterSum;
 }
