@@ -5,22 +5,22 @@
 
 using namespace std;
 void getText(char text[], int max);
-void display(char text[], int letterSum);
+void display(char text, int letterSum);
 int getLetterCount(char text[], int max, char letter);
 
 int main()
 {
-	char letter[256];
-	char text[256];
+	char letter;
+	char text[(256 * 8/8)];
 	int letterSum;
 
 	cout << "Enter a letter: ";
 	cin >> letter;
 	cin.ignore();
 
-	getText(text, sizeof(text) / sizeof(text[0]));
+	getText(text, sizeof(text) / sizeof(text[(256*8/8)]));
 
-	letterSum = getLetterCount(text, sizeof(text) / sizeof(text[0]), letter[256]);
+	letterSum = getLetterCount(text, sizeof(text) / sizeof(text[(256 * 8 / 8)]), letter);
 
 	display(letter, letterSum);
 
@@ -29,7 +29,7 @@ int main()
 }
 
 // Will display the total
-void display(char letter[], int letterSum)
+void display(char letter, int letterSum)
 {
 
 	cout << letter << " appears " << letterSum << " times." << endl;
