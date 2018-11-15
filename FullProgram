@@ -20,7 +20,7 @@ int main()
 	cin >> letter;
 	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-	textLength = getText(text, sizeof(text) / sizeof(text[(256 * 8 / 8)]));
+	textLength = getText(text, sizeof(text) / sizeof(text[0]));
 
 	letterSum = getLetterCount(text, textLength, letter);
 
